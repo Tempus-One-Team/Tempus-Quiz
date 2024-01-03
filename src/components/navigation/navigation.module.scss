@@ -1,12 +1,26 @@
 .headerWrapper {
-    padding-left: 50px;
-    padding-right: 50px;
     border-bottom: 1px solid #333;
+    padding: 0 20px;
+    flex: 0 0 auto;
     .Links {
         gap: 20px;
+        align-items: center;
         display: flex;
     }
     .Title {
+        margin: 0;
+    }
+}
+
+.footerWrapper {
+    flex: 0 0 auto;
+    padding: 0;
+    height: 64px;
+    align-items: center;
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    h5 {
         margin: 0;
     }
 }

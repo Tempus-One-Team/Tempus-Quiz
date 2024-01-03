@@ -1,3 +1,4 @@
+import Styles from './layout.module.scss';
 import { Layout } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import FooterComponent from 'components/navigation/footer';
@@ -12,12 +13,13 @@ interface LayoutApp {
 const LayoutApp: FC<LayoutApp> = ({ setIsDarkMode }) => {
     return (
         <Layout>
-            <HeaderComponent setIsDarkMode={setIsDarkMode} />
-            <Content style={{ height: '84.7vh', padding: 50 }}>
-                <Outlet />
-            </Content>
-
-            <FooterComponent />
+            <div className="container">
+                <HeaderComponent setIsDarkMode={setIsDarkMode} />
+                <Content className={Styles.Content}>
+                    <Outlet />
+                </Content>
+                <FooterComponent />
+            </div>
         </Layout>
     );
 };
