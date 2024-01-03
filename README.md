@@ -15,7 +15,7 @@ Coding Competition is a web application for testing your own coding abilities
 <a href="#technology-stack" title="Antd"><img src="https://github.com/get-icon/geticon/raw/master/icons/ant-design.svg" alt="antd" width="48px" height="48px"></a> <a href="#technology-stack" title="Prettier"><img src="https://github.com/get-icon/geticon/raw/master/icons/prettier.svg" alt="prettier" width="48px" height="48px"></a> <a href="https://www.typescriptlang.org/" title="ESLint"><img src="https://github.com/get-icon/geticon/raw/master/icons/eslint.svg" alt="eslint" width="48px" height="48px"></a> <a href="https://www.typescriptlang.org/" title="github"><img src="https://github.com/get-icon/geticon/raw/master/icons/github-icon.svg" alt="github" width="48px" height="48px"></a>
 
 - Vite <sup>_[docs](https://vitejs.dev/)_</sup>
-- Vue <sup>_[docs](https://ru.vuejs.org/index.html)_</sup>
+- React <sup>_[docs](https://react.dev/)_</sup>
 - TypeScript <sup>_[docs](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html)_</sup>
 - Ant Design <sup>_[docs](https://ant.design/)_</sup>
 - Teamwork tools:
