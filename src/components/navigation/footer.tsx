@@ -1,5 +1,5 @@
 import Styles from './navigation.module.scss';
-import { Button, Flex } from 'antd';
+import { Button } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Title from 'antd/es/typography/Title';
 

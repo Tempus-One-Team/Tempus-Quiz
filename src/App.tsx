@@ -1,18 +1,18 @@
 import AppRoutes from './router/index';
 import { ConfigProvider, theme } from 'antd';
-import { useState } from 'react';
+import { useAppSelector } from 'store/store-hooks';
 
 const { defaultAlgorithm, darkAlgorithm } = theme;
 
 function App() {
-    const [isDarkMode, setIsDarkMode] = useState(false); // Перенести в слайс
+    const userTheme = useAppSelector((state) => state.theme.userTheme);
     return (
         <ConfigProvider
             theme={{
-                algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+                algorithm: userTheme ? darkAlgorithm : defaultAlgorithm,
             }}
         >
-            <AppRoutes setIsDarkMode={setIsDarkMode} />
+            <AppRoutes />
         </ConfigProvider>
     );
 }

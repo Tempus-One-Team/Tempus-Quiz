@@ -1,15 +1,13 @@
 import Styles from './navigation.module.scss';
-import { Flex, Switch } from 'antd';
+import { Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { FC } from 'react';
+import ThemeSwitch from 'components/swith-theme/swith-theme';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from 'router/types';
+import { useAppSelector } from 'store/store-hooks';
 
-interface HeaderComponent {
-    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const HeaderComponent: FC<HeaderComponent> = ({ setIsDarkMode }) => {
+const HeaderComponent = () => {
+    const header = useAppSelector((state) => state.header.activeHeader);
     return (
         <div className={Styles.headerWrapper}>
             <Flex align="center" justify="space-between" style={{ height: 64 }}>
@@ -18,15 +16,21 @@ const HeaderComponent: FC<HeaderComponent> = ({ setIsDarkMode }) => {
                 </Title>
 
                 <ul className={Styles.Links}>
-                    <li>
-                        <Link to={AppRoutesPath.MAIN}>Home</Link>
-                    </li>
-                    <li>
-                        <Link to={AppRoutesPath.LIST_OF_ALL_PROGRAMMERS}>List of Programmers</Link>
-                    </li>
-                    <li>
-                        <Link to={AppRoutesPath.TASK_DESCRIPTION}>Task Description</Link>
-                    </li>
+                    {header === 'standart' && (
+                        <>
+                            <li>
+                                <Link to={AppRoutesPath.MAIN}>Home</Link>
+                            </li>
+                            <li>
+                                <Link to={AppRoutesPath.LIST_OF_ALL_PROGRAMMERS}>
+                                    List of Programmers
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={AppRoutesPath.TASK_DESCRIPTION}>Task Description</Link>
+                            </li>
+                        </>
+                    )}
                     <li>
                         <Link to={AppRoutesPath.TASK_PAGE_WITH_RULES}>Task Page with Rules</Link>
                     </li>
@@ -43,12 +47,7 @@ const HeaderComponent: FC<HeaderComponent> = ({ setIsDarkMode }) => {
                     </li>
                 </ul>
 
-                <Switch
-                    checkedChildren={'Светлая'}
-                    unCheckedChildren={'Темная'}
-                    defaultChecked
-                    onChange={() => setIsDarkMode((previousValue) => !previousValue)}
-                />
+                <ThemeSwitch />
             </Flex>
         </div>
     );
