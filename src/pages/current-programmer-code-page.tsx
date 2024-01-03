@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const CurrentProgrammerCodePage = () => {
-  return (
-    <>
-      <h1>Current Programmer Code Page</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>Current Programmer Code Page</Paragraph>
+        </>
+    );
 };
 
 export default CurrentProgrammerCodePage;

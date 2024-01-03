@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const InvitationPage = () => {
-  return (
-    <>
-      <h1>InvitationPage</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>InvitationPage</Paragraph>
+        </>
+    );
 };
 
 export default InvitationPage;

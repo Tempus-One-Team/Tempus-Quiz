@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const EnterRoom = () => {
-  return (
-    <>
-      <h1>EnterRoom</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>EnterRoom</Paragraph>
+        </>
+    );
 };
 
 export default EnterRoom;
