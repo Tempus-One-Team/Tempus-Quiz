@@ -7,17 +7,12 @@ import ListOfAllProgrammers from 'pages/list-of-all-programmers';
 import TaskDescription from 'pages/task-description';
 import TaskPageWithRules from 'pages/task-page-with-rules';
 import WaitingRoom from 'pages/waiting-room';
-import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-interface AppRoutes {
-    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const AppRoutes: FC<AppRoutes> = ({ setIsDarkMode }) => {
+const AppRoutes = () => {
     return (
         <Routes>
-            <Route path={AppRoutesPath.MAIN} element={<LayoutApp setIsDarkMode={setIsDarkMode} />}>
+            <Route path={AppRoutesPath.MAIN} element={<LayoutApp />}>
                 <Route index element={<EnterRoom />} />
                 <Route
                     path={AppRoutesPath.LIST_OF_ALL_PROGRAMMERS}
