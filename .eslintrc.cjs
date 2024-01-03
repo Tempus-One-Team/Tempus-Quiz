@@ -27,20 +27,5 @@ module.exports = {
         'import/no-unresolved': 'off',
         'react-hooks/exhaustive-deps': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
-        'import/order': [
-            'error',
-            {
-                groups: [
-                    'type',
-                    'object',
-                    'builtin',
-                    'external',
-                    'internal',
-                    'sibling',
-                    'parent',
-                    'index',
-                ],
-            },
-        ],
     },
 };

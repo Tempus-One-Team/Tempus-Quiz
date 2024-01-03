@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const WaitingRoom = () => {
-  return (
-    <>
-      <h1>WaitingRoom</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>WaitingRoom</Paragraph>
+        </>
+    );
 };
 
 export default WaitingRoom;

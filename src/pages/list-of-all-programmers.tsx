@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const ListOfAllProgrammers = () => {
-  return (
-    <>
-      <h1>ListOfAllProgrammers</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>ListOfAllProgrammers</Paragraph>
+        </>
+    );
 };
 
 export default ListOfAllProgrammers;

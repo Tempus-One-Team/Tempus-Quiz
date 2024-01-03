@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const TaskDescription = () => {
-  return (
-    <>
-      <h1>TaskDescription</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>TaskDescription</Paragraph>
+        </>
+    );
 };
 
 export default TaskDescription;

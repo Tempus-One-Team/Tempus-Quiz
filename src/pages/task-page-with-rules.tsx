@@ -1,9 +1,11 @@
+import Paragraph from 'antd/es/typography/Paragraph';
+
 const TaskPageWithRules = () => {
-  return (
-    <>
-      <h1>TaskPageWithRules</h1>
-    </>
-  );
+    return (
+        <>
+            <Paragraph>TaskPageWithRules</Paragraph>
+        </>
+    );
 };
 
 export default TaskPageWithRules;

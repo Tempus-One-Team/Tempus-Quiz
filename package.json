@@ -17,6 +17,7 @@
         "react-dom": "^18.2.0",
         "react-router": "^6.21.1",
         "react-router-dom": "^6.21.1",
+        "sass": "^1.69.7",
         "typescript": "^5.3.3"
     },
     "devDependencies": {
