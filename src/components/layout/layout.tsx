@@ -12,15 +12,15 @@ interface LayoutApp {
 
 const LayoutApp: FC<LayoutApp> = ({ setIsDarkMode }) => {
     return (
-        <Layout>
-            <div className="container">
+        <div className="container">
+            <Layout>
                 <HeaderComponent setIsDarkMode={setIsDarkMode} />
                 <Content className={Styles.Content}>
                     <Outlet />
                 </Content>
                 <FooterComponent />
-            </div>
-        </Layout>
+            </Layout>
+        </div>
     );
 };
 
