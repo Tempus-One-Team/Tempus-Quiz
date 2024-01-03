@@ -1,5 +1,5 @@
-import { Outlet, Link } from 'react-router-dom';
-import { AppRoutesPath } from '../router/types';
+import { Link, Outlet } from 'react-router-dom';
+import { AppRoutesPath } from 'router/types';
 
 const LayoutApp = () => {
     return (
