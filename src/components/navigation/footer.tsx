@@ -7,7 +7,7 @@ const FooterComponent = () => {
     return (
         <Footer className={Styles.footerWrapper}>
             <Title level={5}>Время | войти в аккаунт | создатели</Title>
-            <Button>Кнопка действия</Button>
+            <Button type="primary ">Кнопка действия</Button>
         </Footer>
     );
 };
