@@ -1,12 +1,7 @@
-import './App.css';
+import AppRoutes from './router/index';
 
 function App() {
-    console.log('das');
-    return (
-        <>
-            <h1></h1>
-        </>
-    );
+    return <AppRoutes />;
 }
 
 export default App;
