@@ -1,4 +1,5 @@
-import { Button, Flex } from 'antd';
+import Styles from './navigation.module.scss';
+import { Flex, Switch } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,13 +11,13 @@ interface HeaderComponent {
 
 const HeaderComponent: FC<HeaderComponent> = ({ setIsDarkMode }) => {
     return (
-        <div style={{ paddingLeft: 50, paddingRight: 50, borderBottom: '1px solid #333' }}>
+        <div className={Styles.headerWrapper}>
             <Flex align="center" justify="space-between" style={{ height: 64 }}>
-                <Title style={{ margin: 0 }} level={2}>
+                <Title className={Styles.Title} level={2}>
                     Заголовок
                 </Title>
 
-                <ul style={{ display: 'flex', gap: 40 }}>
+                <ul className={Styles.Links}>
                     <li>
                         <Link to={AppRoutesPath.MAIN}>Home</Link>
                     </li>
@@ -41,9 +42,13 @@ const HeaderComponent: FC<HeaderComponent> = ({ setIsDarkMode }) => {
                         </Link>
                     </li>
                 </ul>
-                <Button onClick={() => setIsDarkMode((previousValue) => !previousValue)}>
-                    Изменить тему
-                </Button>
+
+                <Switch
+                    checkedChildren={'Светлая'}
+                    unCheckedChildren={'Темная'}
+                    defaultChecked
+                    onChange={() => setIsDarkMode((previousValue) => !previousValue)}
+                />
             </Flex>
         </div>
     );

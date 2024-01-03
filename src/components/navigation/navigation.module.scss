@@ -1,0 +1,12 @@
+.headerWrapper {
+    padding-left: 50px;
+    padding-right: 50px;
+    border-bottom: 1px solid #333;
+    .Links {
+        gap: 20px;
+        display: flex;
+    }
+    .Title {
+        margin: 0;
+    }
+}

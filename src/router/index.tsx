@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import { AppRoutesPath } from './types';
 import LayoutApp from 'components/layout/layout';
 import CurrentProgrammerCodePage from 'pages/current-programmer-code-page';
