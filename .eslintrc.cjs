@@ -1,7 +1,14 @@
 module.exports = {
     root: true,
     env: { browser: true, es2020: true },
-    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript'],
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
+    ],
     settings: {
         'import/resolver': {
             node: {
@@ -23,7 +30,16 @@ module.exports = {
         'import/order': [
             'error',
             {
-                groups: ['index', 'parent', 'sibling', 'internal', 'external', 'builtin', 'object', 'type'],
+                groups: [
+                    'index',
+                    'parent',
+                    'sibling',
+                    'internal',
+                    'external',
+                    'builtin',
+                    'object',
+                    'type',
+                ],
             },
         ],
     },
