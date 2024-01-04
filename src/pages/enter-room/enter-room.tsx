@@ -5,7 +5,7 @@ import { AppRoutesPath } from 'router/types';
 import { useAppSelector } from 'store/store-hooks';
 
 const EnterRoom = () => {
-    const UserIsLogin = useAppSelector((state) => state.userLogin.isLogin);
+    const UserIsLogin = useAppSelector((state) => state.user.isLogin);
     const navigate = useNavigate();
 
     return (
