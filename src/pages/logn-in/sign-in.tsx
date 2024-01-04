@@ -1,7 +1,11 @@
 import Styles from './styles.module.scss';
-import { Button, Form, Input, Space } from 'antd';
+import { Space } from 'antd';
 import Title from 'antd/es/typography/Title';
+import loginAndReturnUser from 'api/autification/login-user';
+import Cookies from 'js-cookie';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { setUserAuth } from 'store/reducers/user-slice';
+import { useAppDispatch } from 'store/store-hooks';
 
 type Inputs = {
     email: string;
@@ -9,15 +13,15 @@ type Inputs = {
 };
 
 const SignIn = () => {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm<Inputs>();
+    const { register, handleSubmit } = useForm<Inputs>();
+    const dispatch = useAppDispatch();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        const user = await loginAndReturnUser(data);
+        if (user) {
+            Cookies.set('userId', user.uid);
+            dispatch(setUserAuth({ isLogin: true }));
+        }
     };
 
     return (
