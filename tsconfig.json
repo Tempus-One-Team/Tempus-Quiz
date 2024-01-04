@@ -29,7 +29,8 @@
             "store/*": ["store/*"],
             "types/*": ["types/*"],
             "utils/*": ["utils/*"],
-            "router/*": ["router/*"]
+            "router/*": ["router/*"],
+            "shared/*": ["shared/*"]
         }
     },
     "include": ["src/**/*"],
