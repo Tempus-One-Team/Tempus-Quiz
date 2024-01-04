@@ -1,5 +1,5 @@
 import Styles from './styles.module.scss';
-import { Space } from 'antd';
+import { Button, Form, Input, Space } from 'antd';
 import Title from 'antd/es/typography/Title';
 import loginAndReturnUser from 'api/autification/login-user';
 import Cookies from 'js-cookie';
@@ -26,15 +26,15 @@ const SignIn = () => {
 
     return (
         <Space className={Styles.SignIn}>
-            <form name="basic" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+            <Form name="basic" autoComplete="off" onSubmitCapture={handleSubmit(onSubmit)}>
                 <Title level={2}>Войти в аккаунт</Title>
-                <input
+                <Input
                     {...register('email', { required: 'email is required' })}
                     name="email"
                     placeholder="Почта"
                     type="email"
                 />
-                <input
+                <Input
                     {...register('password', {
                         required: 'password is required',
                         minLength: 8,
@@ -44,10 +44,10 @@ const SignIn = () => {
                     placeholder="Пароль"
                     type="password"
                 />
-                <button className={Styles.button} type="submit">
+                <Button htmlType="submit" className={Styles.button}>
                     Войти в аккаунт
-                </button>
-            </form>
+                </Button>
+            </Form>
         </Space>
     );
 };
