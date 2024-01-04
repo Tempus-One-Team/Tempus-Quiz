@@ -1,10 +1,12 @@
 import headerReducer from './reducers/header-slice';
 import themeReducer from './reducers/theme-slice';
+import userLoginReducer from './reducers/user-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
     theme: themeReducer,
     header: headerReducer,
+    userLogin: userLoginReducer,
 });
 
 export const setupStore = () => {

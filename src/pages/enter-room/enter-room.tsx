@@ -1,23 +1,36 @@
 import Styles from './style.module.scss';
 import { Button, Card, Input, Space } from 'antd';
-import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { AppRoutesPath } from 'router/types';
+import { useAppSelector } from 'store/store-hooks';
 
 const EnterRoom = () => {
-    const [UserIsAuth, setUserIsAuth] = useState(false);
+    const UserIsLogin = useAppSelector((state) => state.userLogin.isLogin);
+    const navigate = useNavigate();
 
     return (
         <Space className={Styles.EnterSpace}>
             <Card title="Создать комнату" size="small">
                 <div className={Styles.Card}>
                     <p>Проводи соревнования, получай уровень!</p>
-                    {UserIsAuth ? <Button>Создать</Button> : <Button>Войти в аккаунт</Button>}
+                    {UserIsLogin ? (
+                        <Button onClick={() => navigate(AppRoutesPath.CREATING_ROOM_PAGE)}>
+                            Создать
+                        </Button>
+                    ) : (
+                        <Button onClick={() => navigate(AppRoutesPath.SIGN_IN_PAGE)}>
+                            Войти в аккаунт
+                        </Button>
+                    )}
                 </div>
             </Card>
             <Card title="Войти в комнату" size="small">
                 <div className={Styles.Card}>
                     <p>Учавствуй в соревнованиях, побеждай!</p>
                     <Input placeholder="Код комнаты"></Input>
-                    <Button>Войти в комнату</Button>
+                    <Button onClick={() => navigate(AppRoutesPath.ABOUT_ROOM)}>
+                        Войти в комнату
+                    </Button>
                 </div>
             </Card>
         </Space>
