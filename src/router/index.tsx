@@ -1,7 +1,7 @@
 import { AppRoutesPath } from './types';
 import LayoutApp from 'components/layout/layout';
 import CurrentProgrammerCodePage from 'pages/current-programmer-code-page';
-import EnterRoom from 'pages/enter-room';
+import EnterRoom from 'pages/enter-room/enter-room';
 import InvitationPage from 'pages/invitation-page';
 import ListOfAllProgrammers from 'pages/list-of-all-programmers';
 import TaskDescription from 'pages/task-description';
