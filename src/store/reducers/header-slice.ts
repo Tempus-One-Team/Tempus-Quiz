@@ -18,7 +18,7 @@ const headerReducer = createSlice({
     },
 });
 
-export interface RootState {
+export interface RootState {	
     header: NewState;
 }
 
