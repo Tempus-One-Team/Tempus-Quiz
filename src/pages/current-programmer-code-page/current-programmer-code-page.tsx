@@ -5,6 +5,11 @@ import AceEditor from 'react-ace';
 import { ResizableBox } from 'react-resizable';
 import { setButtons } from 'store/reducers/footer-slice';
 import { useAppDispatch, useAppSelector } from 'store/store-hooks';
+import 'ace-builds';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/theme-tomorrow';
+import 'ace-builds/src-noconflict/theme-twilight';
+import 'react-resizable/css/styles.css';
 
 const { Title } = Typography;
 
@@ -14,6 +19,7 @@ const CodeEditor = () => {
     const dispatch = useAppDispatch();
 
     dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
+
 
     const handleCodeChange = (newCode: string) => {
         setCode(newCode);

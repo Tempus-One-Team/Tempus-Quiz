@@ -16,6 +16,13 @@ export default defineConfig({
             utils: '/src/utils',
             router: '/src/router',
             shared: '/src/shared',
+            ace: 'ace-builds/src-noconflict/ace',
+            'react-router-dom': 'react-router-dom',
+            react: 'react',
+            redux: 'redux',
+            '@reduxjs/toolkit': '@reduxjs/toolkit',
+            antd: 'antd',
+            '@ant-design/icons': '@ant-design/icons',
         },
     },
 });
