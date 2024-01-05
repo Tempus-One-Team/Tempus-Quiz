@@ -4,7 +4,9 @@ import Title from 'antd/es/typography/Title';
 import loginAndReturnUser from 'api/autification/login-user';
 import Cookies from 'js-cookie';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { setUserAuth } from 'store/reducers/user-slice';
+import { useNavigate } from 'react-router';
+import { AppRoutesPath } from 'router/types';
+import { setUser } from 'store/reducers/user-slice';
 import { useAppDispatch } from 'store/store-hooks';
 
 type Inputs = {
@@ -15,12 +17,21 @@ type Inputs = {
 const SignIn = () => {
     const { register, handleSubmit } = useForm<Inputs>();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const user = await loginAndReturnUser(data);
         if (user) {
             Cookies.set('userId', user.uid);
-            dispatch(setUserAuth({ isLogin: true }));
+            dispatch(
+                setUser({
+                    isLogin: true,
+                    UserName: user.displayName,
+                    UserEmail: user.email,
+                    UserPhoto: user.photoURL,
+                }),
+            );
+            navigate(AppRoutesPath.MAIN);
         }
     };
 
@@ -47,6 +58,7 @@ const SignIn = () => {
                 <button className={Styles.button} type="submit">
                     Войти в аккаунт
                 </button>
+                <a href="https://tempus-one-ts.vercel.app/Register">Или зарегистрируйся</a>
             </form>
         </Space>
     );
