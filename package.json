@@ -12,9 +12,12 @@
     "dependencies": {
         "@ant-design/icons": "^5.2.6",
         "@reduxjs/toolkit": "^2.0.1",
+        "@uiw/react-codemirror": "^4.21.21",
+        "ace-builds": "^1.32.3",
         "antd": "^5.12.7",
         "husky": "^8.0.3",
         "react": "^18.2.0",
+        "react-ace": "^10.1.0",
         "react-dom": "^18.2.0",
         "react-live": "^4.1.5",
         "react-redux": "^9.0.4",
