@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Styles from './current-programmer-code-page.module.scss';
-import { Space, Typography } from 'antd';
-import { useState } from 'react';
-import AceEditor from 'react-ace';
-import { ResizableBox } from 'react-resizable';
-import { setButtons } from 'store/reducers/footer-slice';
-import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 import 'ace-builds';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/theme-twilight';
+import { Space, Typography } from 'antd';
+import { useEffect, useState } from 'react';
+import AceEditor from 'react-ace';
+import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
+import { setButtons } from 'store/reducers/footer-slice';
+import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 
 const { Title } = Typography;
 
@@ -18,8 +19,9 @@ const CodeEditor = () => {
     const [result, setResult] = useState('');
     const dispatch = useAppDispatch();
 
-    dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
-
+    useEffect(() => {
+        dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
+    }, []);
 
     const handleCodeChange = (newCode: string) => {
         setCode(newCode);
@@ -35,8 +37,6 @@ const CodeEditor = () => {
     };
 
     const userTheme = useAppSelector((state) => state.theme.userTheme);
-
-    // console.log(userTheme);
 
     return (
         <Space className={Styles.content}>

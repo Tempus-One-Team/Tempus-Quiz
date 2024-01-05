@@ -1,17 +1,17 @@
 import { LobbyInfo } from '../creating-room';
 import Styles from '../style.module.scss';
 import { Card, DatePicker, Form, Input, Select, TimePicker } from 'antd';
-import { Dayjs } from 'dayjs';
+import moment from 'moment';
 
 const { TextArea } = Input;
 
 interface RoomInfo {
-    setLobbyInfo: React.Dispatch<React.SetStateAction<LobbyInfo | undefined>>;
+    setLobbyInfo: React.Dispatch<React.SetStateAction<LobbyInfo>>;
 }
 const RoomInfo = (props: RoomInfo) => {
     const { setLobbyInfo } = props;
 
-    const changeInput = (UpdateValue: { [key: string]: string | Dayjs | null | undefined }) => {
+    const changeInput = (UpdateValue: { [key: string]: string | number }) => {
         setLobbyInfo((prev) => ({
             ...prev,
             ...UpdateValue,
@@ -38,13 +38,22 @@ const RoomInfo = (props: RoomInfo) => {
                     <TimePicker
                         style={{ width: '100%' }}
                         placeholder="Время выполнения всех задач"
-                        onChange={(time) => changeInput({ LobbyTaskComplitionTime: time })}
+                        onChange={(time) =>
+                            changeInput({
+                                LobbyTaskComplitionTime: moment(
+                                    time?.format('HH:mm'),
+                                    'HH:mm',
+                                ).unix(),
+                            })
+                        }
                     />
                 </Form.Item>
                 <Form.Item<LobbyInfo> name="LobbyDateOfStart">
                     <DatePicker
                         style={{ width: '100%' }}
-                        onChange={(time) => changeInput({ LobbyDateOfStart: time })}
+                        onChange={(date) =>
+                            changeInput({ LobbyDateOfStart: date ? date.unix() : 0 })
+                        }
                         placeholder="Дата старта"
                         showTime
                     />

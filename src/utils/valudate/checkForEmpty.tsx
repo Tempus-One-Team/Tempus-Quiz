@@ -1,12 +1,14 @@
 /* eslint-disable prefer-const */
 interface MyObject {
-    [key: string]: string | number | null | undefined;
+    [index: string]: string;
 }
 
-export default function checkForEmptyValues(obj: MyObject | undefined): boolean {
+export default function checkForEmptyValues(obj: MyObject) {
     for (let key in obj) {
-        if (obj[key] === '' || obj[key] === null || obj[key] === undefined) {
-            return false;
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (obj[key] === '' || obj[key] === null || obj[key] === undefined) {
+                return false;
+            }
         }
     }
     return true;
