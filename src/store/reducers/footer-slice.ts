@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface FooterButton {
+export interface FooterButton {
     label: string;
     onClick: () => void;
 }
 
-interface FooterState {
+export interface FooterState {
     buttons: FooterButton[];
 }
 
-const initialState: FooterState = {
+export const initialState: FooterState = {
     buttons: [],
 };
 
