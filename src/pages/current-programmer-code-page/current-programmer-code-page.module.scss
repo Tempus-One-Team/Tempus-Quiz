@@ -2,3 +2,21 @@
     display: flex;
     justify-content: space-between;
 }
+
+.aceEditor {
+    border: 1px solid rgba(177, 150, 150, 0.311);
+    border-radius: 10px;
+}
+
+.stretchableDiv {
+    border: 1px solid rgba(177, 150, 150, 0.311);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.container {
+    position: relative;
+    min-height: 80vh;
+    width: 100%;
+}
