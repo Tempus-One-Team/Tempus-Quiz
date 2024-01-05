@@ -1,10 +1,8 @@
 import { AppRoutesPath } from './types';
 import LayoutApp from 'components/layout/layout';
-import CurrentProgrammerCodePage from 'pages/current-programmer-code-page/current-programmer-code-page';
-import EnterRoom from 'pages/enter-room';
 import AboutRoom from 'pages/about-room';
 import CreatingRoomPage from 'pages/creating-room-page';
-import CurrentProgrammerCodePage from 'pages/current-programmer-code-page';
+import CurrentProgrammerCodePage from 'pages/current-programmer-code-page/current-programmer-code-page';
 import EnterRoom from 'pages/enter-room/enter-room';
 import InvitationPage from 'pages/invitation-page';
 import ListOfAllProgrammers from 'pages/list-of-all-programmers';

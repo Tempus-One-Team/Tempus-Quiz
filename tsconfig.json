@@ -30,7 +30,14 @@
             "types/*": ["types/*"],
             "utils/*": ["utils/*"],
             "router/*": ["router/*"],
-            "shared/*": ["shared/*"]
+            "shared/*": ["shared/*"],
+            "ace-builds": ["node_modules/ace-builds/src-noconflict/*"],
+            "react-router-dom": ["node_modules/react-router-dom"],
+            "react-router": ["node_modules/react-router"],
+            "redux": ["node_modules/redux"],
+            "@reduxjs/toolkit": ["node_modules/@reduxjs/toolkit"],
+            "antd": ["node_modules/antd"],
+            "@ant-design/icons": ["node_modules/@ant-design/icons"]
         }
     },
     "include": ["src/**/*"],
