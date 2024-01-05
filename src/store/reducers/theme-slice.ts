@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface NewState {
+export interface NewState {
     userTheme: boolean;
 }
 
-const initialState: NewState = {
+export const initialState: NewState = {
     userTheme: false,
 };
 

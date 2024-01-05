@@ -1,21 +1,25 @@
 import Styles from './current-programmer-code-page.module.scss';
+import { Space, Typography } from 'antd';
+import { useState } from 'react';
+import AceEditor from 'react-ace';
+import { ResizableBox } from 'react-resizable';
+import { setButtons } from 'store/reducers/footer-slice';
+import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 import 'ace-builds';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/theme-twilight';
-import { Button, Space, Typography } from 'antd';
-import { useState } from 'react';
-import AceEditor from 'react-ace';
-import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
-import { useAppSelector } from 'store/store-hooks';
 
 const { Title } = Typography;
 
 const CodeEditor = () => {
-    const [code, setCode] = useState<string>('');
-    const [result, setResult] = useState<string>('');
-    const [width, setWidth] = useState<number>(500);
+    const [code, setCode] = useState('');
+    const [result, setResult] = useState('');
+    const dispatch = useAppDispatch();
+
+    dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
+
 
     const handleCodeChange = (newCode: string) => {
         setCode(newCode);
