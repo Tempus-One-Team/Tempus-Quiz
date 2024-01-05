@@ -3,7 +3,6 @@ import TasksInfo from './room-info/tasks-info';
 import Styles from './style.module.scss';
 import { Space } from 'antd';
 import { sendNewLobby } from 'api/lobbyes/sendNewLobby';
-import { Dayjs } from 'dayjs';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { setButtons } from 'store/reducers/footer-slice';
