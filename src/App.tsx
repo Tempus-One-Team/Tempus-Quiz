@@ -1,5 +1,6 @@
 import AppRoutes from './router/index';
 import { ConfigProvider, theme } from 'antd';
+import { THEME_STYLES } from 'shared/constants';
 import { useAppSelector } from 'store/store-hooks';
 
 const { defaultAlgorithm, darkAlgorithm } = theme;
@@ -13,13 +14,13 @@ function App() {
                 ...(!userTheme
                     ? {
                           token: {
-                              wireframe: false,
-                              colorPrimary: '#722ed1',
-                              colorInfo: '#722ed1',
-                              colorSuccess: '#722ed1',
-                              colorWarning: '#722ed1',
-                              colorError: '#f5222d',
-                              colorTextBase: '#000000',
+                              wireframe: THEME_STYLES.WIREFRAME,
+                              colorPrimary: THEME_STYLES.COLOR,
+                              colorInfo: THEME_STYLES.COLOR,
+                              colorSuccess: THEME_STYLES.COLOR,
+                              colorWarning: THEME_STYLES.COLOR,
+                              colorError: THEME_STYLES.ERROR_COLOR,
+                              colorTextBase: THEME_STYLES.TEXT_COLOR,
                           },
                       }
                     : {}),

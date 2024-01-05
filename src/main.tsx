@@ -1,3 +1,4 @@
+import './Api/firebase';
 import App from './App';
 import 'antd/dist/reset.css';
 import 'assets/styles/MainStyles.scss';
