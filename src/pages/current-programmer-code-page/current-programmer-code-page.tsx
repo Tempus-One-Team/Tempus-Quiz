@@ -18,7 +18,7 @@ const CodeEditor = () => {
     const [code, setCode] = useState('');
     const [result, setResult] = useState('');
     const dispatch = useAppDispatch();
-
+  
     useEffect(() => {
         dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
     }, []);
@@ -66,7 +66,7 @@ const CodeEditor = () => {
                         width={500}
                         height={100}
                         minConstraints={[500, 100]}
-                        maxConstraints={[500, 400]}
+                        maxConstraints={[500, 150]}
                     >
                         <Title level={5}>Result:</Title>
                         <Title level={5}>{result}</Title>
