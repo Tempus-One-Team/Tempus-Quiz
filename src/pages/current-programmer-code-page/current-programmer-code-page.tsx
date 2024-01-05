@@ -1,15 +1,15 @@
 import Styles from './current-programmer-code-page.module.scss';
-import { Space, Typography } from 'antd';
-import { useState } from 'react';
-import AceEditor from 'react-ace';
-import { ResizableBox } from 'react-resizable';
-import { setButtons } from 'store/reducers/footer-slice';
-import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 import 'ace-builds';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/theme-twilight';
+import { Space, Typography } from 'antd';
+import { useState } from 'react';
+import AceEditor from 'react-ace';
+import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
+import { setButtons } from 'store/reducers/footer-slice';
+import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 
 const { Title } = Typography;
 
@@ -19,7 +19,6 @@ const CodeEditor = () => {
     const dispatch = useAppDispatch();
 
     dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
-
 
     const handleCodeChange = (newCode: string) => {
         setCode(newCode);
@@ -66,7 +65,7 @@ const CodeEditor = () => {
                         width={500}
                         height={100}
                         minConstraints={[500, 100]}
-                        maxConstraints={[500, 400]}
+                        maxConstraints={[500, 150]}
                     >
                         <Title level={5}>Result:</Title>
                         <Title level={5}>{result}</Title>
