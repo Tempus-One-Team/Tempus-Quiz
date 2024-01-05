@@ -1,6 +1,6 @@
 import Paragraph from 'antd/es/typography/Paragraph';
 
-const CurrentProgrammerCodePage = () => {
+const CurrentProgrammerCode = () => {
     return (
         <>
             <Paragraph>Current Programmer Code Page</Paragraph>
@@ -8,4 +8,4 @@ const CurrentProgrammerCodePage = () => {
     );
 };
 
-export default CurrentProgrammerCodePage;
+export default CurrentProgrammerCode;
