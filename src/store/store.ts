@@ -1,3 +1,4 @@
+import footerReducer from './reducers/footer-slice';
 import headerReducer from './reducers/header-slice';
 import themeReducer from './reducers/theme-slice';
 import userLoginReducer from './reducers/user-slice';
@@ -17,6 +18,7 @@ import storage from 'redux-persist/lib/storage';
 const rootReducer = combineReducers({
     theme: themeReducer,
     header: headerReducer,
+    footer: footerReducer,
     user: userLoginReducer,
 });
 

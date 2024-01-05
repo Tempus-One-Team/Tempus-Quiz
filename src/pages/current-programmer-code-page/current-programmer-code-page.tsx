@@ -1,13 +1,18 @@
 import Styles from './current-programmer-code-page.module.scss';
-import { Button, Space, Typography } from 'antd';
+import { Space, Typography } from 'antd';
 import { useState } from 'react';
 import AceEditor from 'react-ace';
+import { setButtons } from 'store/reducers/footer-slice';
+import { useAppDispatch } from 'store/store-hooks';
 
 const { Title } = Typography;
 
 const CodeEditor = () => {
     const [code, setCode] = useState('');
     const [result, setResult] = useState('');
+    const dispatch = useAppDispatch();
+
+    dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
 
     const handleCodeChange = (newCode) => {
         setCode(newCode);
@@ -48,9 +53,6 @@ const CodeEditor = () => {
                     }}
                 />
 
-                <Button type="primary" onClick={executeCode}>
-                    Execute Code
-                </Button>
                 <Space>
                     <Title level={5}>Result:</Title>
                     <Title level={5}>{result}</Title>
