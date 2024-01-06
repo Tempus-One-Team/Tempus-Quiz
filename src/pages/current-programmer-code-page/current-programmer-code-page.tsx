@@ -26,7 +26,12 @@ const CodeEditor = () => {
 
     const executeCode = (): void => {
         try {
-            const result = eval(code);
+            const test = new Function(code);
+            console.log(code);
+            console.log(test);
+            const result = test();
+            console.log(result);
+
             setResult(result);
         } catch (error: any) {
             setResult(`Error: ${error.message}`);
@@ -34,8 +39,6 @@ const CodeEditor = () => {
     };
 
     const userTheme = useAppSelector((state) => state.theme.userTheme);
-
-    console.log(userTheme);
 
     return (
         <Space className={Styles.content}>
@@ -68,7 +71,7 @@ const CodeEditor = () => {
                         maxConstraints={[500, 150]}
                     >
                         <Title level={5}>Result:</Title>
-                        <Title level={5}>{result}</Title>
+                        <Title level={5}>{`${JSON.stringify(result)}`}</Title>
                     </ResizableBox>
                 </Space>
             </Space>

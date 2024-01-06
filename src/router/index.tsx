@@ -5,7 +5,7 @@ import CreatingRoomPage from 'pages/creating-room-page';
 import CurrentProgrammerCodePage from 'pages/current-programmer-code-page/current-programmer-code-page';
 import EnterRoom from 'pages/enter-room/enter-room';
 import InvitationPage from 'pages/invitation-page';
-import ListOfAllProgrammers from 'pages/list-of-all-programmers';
+import ListOfAllProgrammers from 'pages/list-of-all-programmers/list-of-all-programmers';
 import SignIn from 'pages/logn-in/sign-in';
 import TaskDescription from 'pages/task-description';
 import TaskPageWithRules from 'pages/task-page-with-rules';
