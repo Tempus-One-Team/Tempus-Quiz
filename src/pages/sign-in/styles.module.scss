@@ -8,9 +8,11 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        gap: 20px;
+    }
+    .input {
+        width: 250px;
     }
     .button {
-        width: 100%;
+        width: 250px;
     }
 }
