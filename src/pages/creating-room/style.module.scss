@@ -1,0 +1,12 @@
+.CreatingRoom {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    .Card {
+        width: 500px;
+        .Form {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

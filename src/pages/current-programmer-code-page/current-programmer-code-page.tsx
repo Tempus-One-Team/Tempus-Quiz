@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Styles from './current-programmer-code-page.module.scss';
 import 'ace-builds';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 import 'ace-builds/src-noconflict/theme-twilight';
 import { Space, Typography } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AceEditor from 'react-ace';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
@@ -17,8 +18,10 @@ const CodeEditor = () => {
     const [code, setCode] = useState('');
     const [result, setResult] = useState('');
     const dispatch = useAppDispatch();
-
-    dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
+  
+    useEffect(() => {
+        dispatch(setButtons([{ label: 'Проверить код', onClick: () => executeCode() }]));
+    }, []);
 
     const handleCodeChange = (newCode: string) => {
         setCode(newCode);
@@ -34,8 +37,6 @@ const CodeEditor = () => {
     };
 
     const userTheme = useAppSelector((state) => state.theme.userTheme);
-
-    console.log(userTheme);
 
     return (
         <Space className={Styles.content}>

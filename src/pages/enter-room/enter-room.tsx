@@ -1,12 +1,19 @@
 import Styles from './style.module.scss';
 import { Button, Card, Input, Space } from 'antd';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { AppRoutesPath } from 'router/types';
-import { useAppSelector } from 'store/store-hooks';
+import { setButtons } from 'store/reducers/footer-slice';
+import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 
 const EnterRoom = () => {
     const UserIsLogin = useAppSelector((state) => state.user.isLogin);
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(setButtons([]));
+    }, []);
 
     return (
         <Space className={Styles.EnterSpace}>
