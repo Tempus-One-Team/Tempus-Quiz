@@ -1,7 +1,10 @@
 import Paragraph from 'antd/es/typography/Paragraph';
+import { useParams } from 'react-router';
 
 const AboutRoom = () => {
-    return <Paragraph>About Room</Paragraph>;
+    const { id } = useParams();
+
+    return <Paragraph>About Room {id}</Paragraph>;
 };
 
 export default AboutRoom;
