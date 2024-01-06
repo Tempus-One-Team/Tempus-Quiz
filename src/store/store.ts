@@ -1,4 +1,5 @@
 import footerReducer from './reducers/footer-slice';
+import gameReducer from './reducers/game-slice';
 import headerReducer from './reducers/header-slice';
 import themeReducer from './reducers/theme-slice';
 import userLoginReducer from './reducers/user-slice';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     header: headerReducer,
     footer: footerReducer,
     user: userLoginReducer,
+    game: gameReducer,
 });
 
 const persistConfig = {
