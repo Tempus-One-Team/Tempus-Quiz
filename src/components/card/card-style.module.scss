@@ -1,0 +1,16 @@
+.card-style {
+    margin: 0px 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.card-style:hover {
+    -webkit-box-shadow: 9px 20px 28px -21px rgba(0, 0, 0, 0.31);
+    -moz-box-shadow: 9px 20px 28px -21px rgba(0, 0, 0, 0.31);
+    box-shadow: 9px 20px 28px -21px rgba(0, 0, 0, 0.31);
+    transition: 0.3s ease-in-out;
+}
+.ace-editor-style {
+    max-width: 100%;
+    max-height: 250px;
+}

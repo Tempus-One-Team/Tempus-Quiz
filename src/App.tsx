@@ -6,12 +6,12 @@ import { useAppSelector } from 'store/store-hooks';
 const { defaultAlgorithm, darkAlgorithm } = theme;
 
 function App() {
-    const userTheme = useAppSelector((state) => state.theme.userTheme);
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
     return (
         <ConfigProvider
             theme={{
-                algorithm: userTheme ? darkAlgorithm : defaultAlgorithm,
-                ...(!userTheme
+                algorithm: darkTheme ? darkAlgorithm : defaultAlgorithm,
+                ...(!darkTheme
                     ? {
                           token: {
                               wireframe: THEME_STYLES.WIREFRAME,

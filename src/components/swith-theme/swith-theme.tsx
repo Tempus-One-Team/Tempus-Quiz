@@ -4,18 +4,18 @@ import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 
 const ThemeSwitch = () => {
     const dispatch = useAppDispatch();
-    const userTheme = useAppSelector((state) => state.theme.userTheme);
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
 
     const handleToggleTheme = () => {
-        localStorage.setItem('theme', JSON.stringify(!userTheme));
-        dispatch(toggleTheme(!userTheme));
+        localStorage.setItem('theme', JSON.stringify(!darkTheme));
+        dispatch(toggleTheme(!darkTheme));
     };
 
     return (
         <Switch
             checkedChildren="Темная"
             unCheckedChildren="Светлая"
-            checked={userTheme}
+            checked={darkTheme}
             onChange={handleToggleTheme}
         />
     );
