@@ -1,7 +1,7 @@
-import { LobbyTask } from '../creating-room';
 import Styles from '../style.module.scss';
 import { Button, Card, Form, Input, Space } from 'antd';
 import { useState } from 'react';
+import { LobbyTask } from 'types/lobbyTypes';
 import { LobbyTaskInitialState } from 'utils/default-values/creating-room-states';
 import checkForEmptyValues from 'utils/valudate/checkForEmpty';
 
@@ -86,7 +86,7 @@ const TasksInfo = (props: TasksInfo) => {
                         onClick={() => removeTask(task.TaskId)}
                         key={task.TaskId}
                     >
-                        {task.TaskOutput}
+                        {task.TaskTitle}
                     </div>
                 ))}
             </Space>

@@ -2,38 +2,25 @@ import RoomInfo from './room-info/room-info';
 import TasksInfo from './room-info/tasks-info';
 import Styles from './style.module.scss';
 import { Space } from 'antd';
-import { sendNewLobby } from 'api/lobbyes/sendNewLobby';
+import { sendNewLobby } from 'api/lobbyes/send-new-lobby';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { AppRoutesPath } from 'router/types';
 import { setButtons } from 'store/reducers/footer-slice';
 import { useAppDispatch, useAppSelector } from 'store/store-hooks';
+import { LobbyInfo, LobbyTask } from 'types/lobbyTypes';
 import { LobbyInfoInitialState } from 'utils/default-values/creating-room-states';
 import checkForEmptyValues from 'utils/valudate/checkForEmpty';
-
-export interface LobbyInfo {
-    LobbyName: string;
-    LobbyDescription: string;
-    LobbyTaskComplitionTime: number;
-    LobbyDateOfStart: number;
-    LobbyPrivate: string;
-    LobbyPrizeFound: string;
-}
-
-export interface LobbyTask {
-    TaskTitle: string;
-    TaskDescription: string;
-    TaskInput: string;
-    TaskOutput: string;
-    TaskInitial: string;
-    TaskId: number;
-}
 
 const CreatingRoom = () => {
     const [LobbyInfo, setLobbyInfo] = useState<LobbyInfo>(LobbyInfoInitialState);
     const [LobbyTasks, setLobbyTasks] = useState<LobbyTask[]>([]);
     const { UserName, UserEmail, UserPhoto } = useAppSelector((state) => state.user);
-    const UserId = JSON.stringify(Cookies.get('userId'));
+    const UserId = Cookies.get('userId');
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const AdminUser = {
         UserName,
         UserPhoto,
@@ -41,21 +28,24 @@ const CreatingRoom = () => {
         UserStatus: 'admin',
     };
 
-    function addNewLobby() {
-        const NewLobby = {
-            LobbyInfo,
-            LobbyTasks,
-            LobbyUsers: { [UserId]: AdminUser },
-        };
-
-        if (checkForEmptyValues(LobbyInfo) && LobbyTasks.length > 0) {
-            sendNewLobby(NewLobby);
-        }
-    }
+    const NewLobby = {
+        LobbyInfo,
+        LobbyTasks: LobbyTasks,
+        LobbyUsers: { [UserId || '']: AdminUser },
+    };
 
     useEffect(() => {
+        async function addNewLobby() {
+            if (checkForEmptyValues(LobbyInfo) && LobbyTasks.length > 0) {
+                const NewLobbyId = await sendNewLobby(NewLobby);
+                if (NewLobbyId) {
+                    Cookies.set('selectLobby', NewLobbyId);
+                    navigate(AppRoutesPath.INVITATION_PAGE);
+                }
+            }
+        }
         dispatch(setButtons([{ label: 'Создать комнату', onClick: () => addNewLobby() }]));
-    }, []);
+    }, [NewLobby]);
 
     return (
         <Space className={Styles.CreatingRoom}>

@@ -22,14 +22,12 @@ const SignIn = () => {
 
     const onSubmit = async () => {
         const user = await loginAndReturnUser({ email, password });
-        if (user) {
-            Cookies.set('userId', user.uid);
+        if (user?.UserId) {
+            Cookies.set('userId', user.UserId);
             dispatch(
                 setUser({
                     isLogin: true,
-                    UserName: user.displayName,
-                    UserEmail: user.email,
-                    UserPhoto: user.photoURL,
+                    ...user,
                 }),
             );
             navigate(AppRoutesPath.MAIN);
