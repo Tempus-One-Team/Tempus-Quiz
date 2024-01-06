@@ -1,5 +1,5 @@
 import { getDatabase, push, ref, set } from 'firebase/database';
-import { LobbyInfo, LobbyTask } from 'pages/creating-room/creating-room';
+import { LobbyInfo, LobbyTask } from 'types/lobbyTypes';
 
 export async function sendNewLobby(NewLobby: {
     LobbyInfo: LobbyInfo;

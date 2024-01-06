@@ -34,7 +34,7 @@ const InvitationPage = () => {
         return (
             <Space>
                 <Link to={AppRoutesPath.ABOUT_ROOM + '/' + Lobby.LobbyInfo.LobbyId}>
-                    {Lobby.LobbyInfo.LobbyId}{' '}
+                    {Lobby.LobbyInfo.LobbyId}
                 </Link>
 
                 <Paragraph>{Lobby?.LobbyInfo?.LobbyName}</Paragraph>

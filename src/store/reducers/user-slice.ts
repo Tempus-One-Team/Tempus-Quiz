@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface NewState {
+export interface UserType {
     isLogin: boolean;
     UserName: string | null;
     UserEmail: string | null;
     UserPhoto: string | null;
 }
 
-const initialState: NewState = {
+const initialState: UserType = {
     isLogin: false,
     UserName: null,
     UserEmail: null,
@@ -18,7 +18,7 @@ const userLoginReducer = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser: (state: NewState, action) => {
+        setUser: (state: UserType, action) => {
             state.isLogin = action.payload.isLogin;
             state.UserName = action.payload.UserName;
             state.UserEmail = action.payload.UserEmail;
@@ -34,7 +34,7 @@ const userLoginReducer = createSlice({
 });
 
 export interface RootState {
-    theme: NewState;
+    theme: UserType;
 }
 
 export const { setUser, removeUser } = userLoginReducer.actions;
