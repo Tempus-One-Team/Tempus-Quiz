@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface NewState {
-    userTheme: boolean;
+    darkTheme: boolean;
 }
 
 export const initialState: NewState = {
-    userTheme: false,
+    darkTheme: false,
 };
 
 const themeReducer = createSlice({
@@ -13,7 +13,7 @@ const themeReducer = createSlice({
     initialState,
     reducers: {
         toggleTheme: (state: NewState, action: PayloadAction<boolean>) => {
-            state.userTheme = action.payload;
+            state.darkTheme = action.payload;
         },
     },
 });

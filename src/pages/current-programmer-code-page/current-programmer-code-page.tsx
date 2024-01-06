@@ -38,7 +38,7 @@ const CodeEditor = () => {
         }
     };
 
-    const userTheme = useAppSelector((state) => state.theme.userTheme);
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
 
     return (
         <Space className={Styles.content}>
@@ -52,7 +52,7 @@ const CodeEditor = () => {
                 <AceEditor
                     placeholder="Placeholder Text"
                     mode="javascript"
-                    theme={userTheme ? 'twilight' : 'tomorrow'}
+                    theme={darkTheme ? 'twilight' : 'tomorrow'}
                     name="blah2"
                     onChange={handleCodeChange}
                     fontSize={18}

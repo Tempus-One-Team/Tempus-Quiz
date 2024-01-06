@@ -18,7 +18,7 @@ interface CardComponentProps {
 }
 
 const CardComponent: React.FC<CardComponentProps> = ({ item }) => {
-    const userTheme = useAppSelector((state) => state.theme.userTheme);
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
     return (
         <Card
             title={item.name}
@@ -34,7 +34,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ item }) => {
             <AceEditor
                 readOnly
                 value={item.value}
-                theme={userTheme ? 'twilight' : 'tomorrow'}
+                theme={darkTheme ? 'twilight' : 'tomorrow'}
                 className={Styles['ace-editor-style']}
             />
         </Card>
