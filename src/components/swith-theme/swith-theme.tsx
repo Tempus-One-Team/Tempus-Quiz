@@ -13,8 +13,8 @@ const ThemeSwitch = () => {
 
     return (
         <Switch
-            checkedChildren="Темная"
-            unCheckedChildren="Светлая"
+            checkedChildren="🌙"
+            unCheckedChildren="☀️"
             checked={darkTheme}
             onChange={handleToggleTheme}
         />
