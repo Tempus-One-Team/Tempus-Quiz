@@ -2,11 +2,11 @@ import { getDatabase, onValue, ref } from 'firebase/database';
 import { LobbyUsers } from 'types/lobbyTypes';
 
 export function subscribeOnUsers(
-    QuezKode: string,
+    QuezCode: string,
     callback: React.Dispatch<React.SetStateAction<LobbyUsers[] | undefined>>,
 ) {
     const db = getDatabase();
-    const starCountRef = ref(db, 'quez/' + QuezKode + '/LobbyUsers');
+    const starCountRef = ref(db, 'quez/' + QuezCode + '/LobbyUsers');
 
     onValue(starCountRef, (snapshot) => {
         if (snapshot.exists()) {
@@ -16,7 +16,7 @@ export function subscribeOnUsers(
             }));
             callback(transformedArray);
         } else {
-            callback(null);
+            callback(undefined);
         }
     });
 }

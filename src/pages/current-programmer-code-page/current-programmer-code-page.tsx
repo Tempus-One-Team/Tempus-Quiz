@@ -29,19 +29,14 @@ const CodeEditor = () => {
 
     const executeCode = (): void => {
         try {
-            const test = new Function(code);
-            console.log(code);
-            console.log(test);
-            const result = test();
-            console.log(result);
-
+            const result = eval(code);
             setResult(result);
         } catch (error: any) {
             setResult(`Error: ${error.message}`);
         }
     };
 
-    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
+    const userTheme = useAppSelector((state) => state.theme.userTheme);
 
     return (
         <Space className={Styles.content}>
@@ -55,7 +50,7 @@ const CodeEditor = () => {
                 <AceEditor
                     placeholder="Placeholder Text"
                     mode="javascript"
-                    theme={darkTheme ? 'twilight' : 'tomorrow'}
+                    theme={userTheme ? 'twilight' : 'tomorrow'}
                     name="blah2"
                     onChange={handleCodeChange}
                     fontSize={18}
@@ -74,7 +69,7 @@ const CodeEditor = () => {
                         maxConstraints={[500, 150]}
                     >
                         <Title level={5}>Result:</Title>
-                        <Title level={5}>{`${JSON.stringify(result)}`}</Title>
+                        <Title level={5}>{result}</Title>
                     </ResizableBox>
                 </Space>
             </Space>
