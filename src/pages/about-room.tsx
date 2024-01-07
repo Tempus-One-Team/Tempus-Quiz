@@ -28,7 +28,7 @@ const AboutRoom = () => {
         dispatch(
             setButtons([
                 {
-                    label: 'Присоедениться',
+                    label: 'Присоединиться',
                     onClick: () => {
                         if (id) {
                             if (User.isLogin) {
