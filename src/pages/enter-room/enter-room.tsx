@@ -1,6 +1,6 @@
 import Styles from './style.module.scss';
 import { Button, Card, Input, Space } from 'antd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { AppRoutesPath } from 'router/types';
 import { setButtons } from 'store/reducers/footer-slice';
@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 
 const EnterRoom = () => {
     const UserIsLogin = useAppSelector((state) => state.user.isLogin);
+    const [InputCode, setInputCode] = useState('');
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -34,8 +35,11 @@ const EnterRoom = () => {
             <Card title="Войти в комнату" size="small">
                 <div className={Styles.Card}>
                     <p>Учавствуй в соревнованиях, побеждай!</p>
-                    <Input placeholder="Код комнаты"></Input>
-                    <Button onClick={() => navigate(AppRoutesPath.ABOUT_ROOM)}>
+                    <Input
+                        placeholder="Код комнаты"
+                        onChange={(e) => setInputCode(e.target.value)}
+                    ></Input>
+                    <Button onClick={() => navigate(AppRoutesPath.ABOUT_ROOM + '/' + InputCode)}>
                         Войти в комнату
                     </Button>
                 </div>

@@ -7,15 +7,16 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from 'router/types';
 import { LobbyType, LobbyUsers } from 'types/lobbyTypes';
+import { decryptData } from 'utils/crypt-data/cripting-data';
 
 const InvitationPage = () => {
-    const UserId = Cookies.get('userId');
+    const UserId = decryptData(Cookies.get('userId'));
     const [Lobby, setLobby] = useState<LobbyType>();
     const [LobbyUsersRender, setLobbyUsers] = useState<LobbyUsers[]>();
 
     useEffect(() => {
         async function getLobby() {
-            const SelectLobbyCode = Cookies.get('selectLobby');
+            const SelectLobbyCode = decryptData(Cookies.get('selectLobby'));
             if (SelectLobbyCode && UserId) {
                 const Lobby = await getLobbyFromCode(SelectLobbyCode);
                 if (Lobby?.LobbyUsers[UserId].UserStatus === 'admin') {
