@@ -2,12 +2,13 @@ import RoomInfo from './room-info/room-info';
 import TasksInfo from './room-info/tasks-info';
 import Styles from './style.module.scss';
 import { Space } from 'antd';
-import { sendNewLobby } from 'api/lobbyes/send-new-lobby';
+import { sendNewLobby } from 'api/lobby/send-new-lobby';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { AppRoutesPath } from 'router/types';
 import { setButtons } from 'store/reducers/footer-slice';
+import { UserStates } from 'store/reducers/user-slice';
 import { useAppDispatch, useAppSelector } from 'store/store-hooks';
 import { LobbyInfo, LobbyTask } from 'types/lobbyTypes';
 import { decryptData, encryptData } from 'utils/crypt-data/cripting-data';
@@ -26,7 +27,7 @@ const CreatingRoom = () => {
         UserName,
         UserPhoto,
         UserEmail,
-        UserStatus: 'admin',
+        UserStatus: UserStates.admin,
     };
 
     const NewLobby = {

@@ -1,5 +1,5 @@
 import { getDatabase, push, ref, set } from 'firebase/database';
-import { UserType } from 'store/reducers/user-slice';
+import { UserStates, UserType } from 'store/reducers/user-slice';
 
 export async function sendInviteToLobby(
     LobbyId: string | undefined,
@@ -7,7 +7,7 @@ export async function sendInviteToLobby(
     UserId?: string | undefined,
 ): Promise<string> {
     const db = getDatabase();
-    const NewUser = { ...User, UserStatus: 'invited' };
+    const NewUser = { ...User, UserStatus: UserStates.invited };
     let userRefKey: string | null;
 
     if (UserId) {

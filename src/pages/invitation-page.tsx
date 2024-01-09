@@ -1,25 +1,27 @@
 import { Space } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
-import { getLobbyFromCode } from 'api/lobbyes/get-lobby-from-code';
-import { subscribeOnUsers } from 'api/lobbyes/subscribe-on-users';
+import { getLobbyFromCode } from 'api/lobby/get-lobby-from-code';
+import { changeUserStatus } from 'api/users/change-user-status';
+import { subscribeOnUsers } from 'api/users/subscribe-on-users';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoutesPath } from 'router/types';
+import { UserStates } from 'store/reducers/user-slice';
 import { LobbyType, LobbyUsers } from 'types/lobbyTypes';
 import { decryptData } from 'utils/crypt-data/cripting-data';
 
 const InvitationPage = () => {
-    const UserId = decryptData(Cookies.get('userId'));
+    const userId = decryptData(Cookies.get('userId'));
     const [Lobby, setLobby] = useState<LobbyType>();
     const [LobbyUsersRender, setLobbyUsers] = useState<LobbyUsers[]>();
 
     useEffect(() => {
         async function getLobby() {
-            const SelectLobbyCode = decryptData(Cookies.get('selectLobby'));
-            if (SelectLobbyCode && UserId) {
-                const Lobby = await getLobbyFromCode(SelectLobbyCode);
-                if (Lobby?.LobbyUsers[UserId].UserStatus === 'admin') {
+            const selectedLobbyCode = decryptData(Cookies.get('selectLobby'));
+            if (selectedLobbyCode && userId) {
+                const Lobby = await getLobbyFromCode(selectedLobbyCode);
+                if (Lobby?.LobbyUsers[userId].UserStatus === UserStates.admin) {
                     setLobby(Lobby);
                     if (Lobby?.LobbyInfo.LobbyId) {
                         subscribeOnUsers(Lobby?.LobbyInfo.LobbyId, setLobbyUsers);
@@ -41,7 +43,38 @@ const InvitationPage = () => {
                 <Paragraph>{Lobby?.LobbyInfo?.LobbyName}</Paragraph>
 
                 <div>
-                    {LobbyUsersRender?.map((user) => <div key={user.UserId}>{user.UserName}</div>)}
+                    {LobbyUsersRender?.map((user) => (
+                        <div key={user.UserId}>
+                            {user.UserName}
+                            {user.UserStatus === UserStates.invited && (
+                                <div>
+                                    <button
+                                        onClick={() =>
+                                            changeUserStatus(
+                                                user.UserId,
+                                                Lobby.LobbyInfo.LobbyId,
+                                                UserStates.accepted,
+                                            )
+                                        }
+                                    >
+                                        accept
+                                    </button>
+                                    <button
+                                        onClick={() =>
+                                            changeUserStatus(
+                                                user.UserId,
+                                                Lobby.LobbyInfo.LobbyId,
+                                                UserStates.banned,
+                                            )
+                                        }
+                                    >
+                                        reject
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                    {/*отдельный компонент*/}
                 </div>
             </Space>
         );
