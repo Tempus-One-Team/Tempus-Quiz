@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import { AppRoutesPath } from 'router/types';
 import { setUser } from 'store/reducers/user-slice';
 import { useAppDispatch } from 'store/store-hooks';
+import { encryptData } from 'utils/crypt-data/cripting-data';
 
 type Inputs = {
     email: string;
@@ -23,7 +24,7 @@ const SignIn = () => {
     const onSubmit = async () => {
         const user = await loginAndReturnUser({ email, password });
         if (user?.UserId) {
-            Cookies.set('userId', user.UserId);
+            Cookies.set('userId', encryptData(user.UserId));
             dispatch(
                 setUser({
                     isLogin: true,

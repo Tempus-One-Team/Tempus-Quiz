@@ -9,12 +9,13 @@ import { AppRoutesPath } from 'router/types';
 import { setButtons } from 'store/reducers/footer-slice';
 import { UserType, setUser } from 'store/reducers/user-slice';
 import { useAppDispatch, useAppSelector } from 'store/store-hooks';
+import { decryptData, encryptData } from 'utils/crypt-data/cripting-data';
 import checkForEmptyValues from 'utils/valudate/checkForEmpty';
 
 const AboutRoom = () => {
-    const { id } = useParams();
+    const { LobbyId } = useParams();
     const dispatch = useAppDispatch();
-    const UserId = Cookies.get('userId');
+    const UserId = decryptData(Cookies.get('userId'));
     const User = useAppSelector((state) => state.user);
     const [ActiveUser, setActiveUser] = useState<UserType>(User);
     const navigate = useNavigate();
@@ -25,21 +26,34 @@ const AboutRoom = () => {
     // если что то не поймешь то пиши мне
 
     useEffect(() => {
+        function sendWithLogin() {
+            const NewUserId = sendInviteToLobby(LobbyId, ActiveUser); // здесь поменять потом на LobbyId который будет если команда найдена
+            Cookies.set('selectLobby', encryptData(LobbyId));
+            Cookies.set('userId', encryptData(NewUserId));
+            dispatch(
+                setUser({
+                    isLogin: true,
+                    UserName: ActiveUser.UserName,
+                    UserEmail: ActiveUser.UserEmail,
+                    UserPhoto: ActiveUser.UserPhoto,
+                }),
+            );
+        }
+
         dispatch(
             setButtons([
                 {
                     label: 'Присоединиться',
                     onClick: () => {
-                        if (id) {
+                        if (LobbyId) {
                             if (User.isLogin) {
                                 // здесь еще нужна проверка на админа, если этот пользователь админ этой комнаты то редирект на invitation-page
-                                sendInviteToLobby(id, User, UserId); // здесь поменять потом на id который будет если команда найдена
-                                Cookies.set('selectLobby', id);
+                                sendInviteToLobby(LobbyId, User, UserId); // здесь поменять потом на id который будет если команда найдена
+                                Cookies.set('selectLobby', encryptData(LobbyId));
                                 navigate(AppRoutesPath.WAITING_ROOM);
                             } else {
                                 if (checkForEmptyValues(ActiveUser)) {
-                                    sendInviteToLobby(id, ActiveUser); // здесь поменять потом на id который будет если команда найдена
-                                    Cookies.set('selectLobby', id);
+                                    sendWithLogin();
                                     navigate(AppRoutesPath.WAITING_ROOM);
                                 }
                             }
@@ -52,7 +66,7 @@ const AboutRoom = () => {
 
     return (
         <Paragraph>
-            About Room {id}
+            About Room {LobbyId}
             {!User.isLogin && (
                 <Space>
                     <input
