@@ -31,7 +31,7 @@ const AppRoutes = () => {
                 />
                 <Route path={AppRoutesPath.CREATING_ROOM_PAGE} element={<CreatingRoomPage />} />
                 <Route path={AppRoutesPath.SIGN_IN_PAGE} element={<SignIn />} />
-                <Route path={AppRoutesPath.ABOUT_ROOM + '/:LobbyId'} element={<AboutRoom />} />
+                <Route path={AppRoutesPath.ABOUT_ROOM + '/:lobbyId'} element={<AboutRoom />} />
             </Route>
         </Routes>
     );

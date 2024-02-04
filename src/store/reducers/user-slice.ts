@@ -1,5 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const UserStates = {
+    banned: 'banned',
+    invited: 'invited',
+    accepted: 'accepted',
+    incompetition: 'incompetition',
+    finished: 'finished',
+    admin: 'admin',
+};
+
 export interface UserType {
     isLogin: boolean;
     UserName: string | null;

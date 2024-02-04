@@ -1,6 +1,6 @@
 import { Space } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
-import { sendInviteToLobby } from 'api/lobbyes/send-invite-to-lobby';
+import { sendInviteToLobby } from 'api/lobby/send-invite-to-lobby';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
@@ -13,11 +13,11 @@ import { decryptData, encryptData } from 'utils/crypt-data/cripting-data';
 import checkForEmptyValues from 'utils/valudate/checkForEmpty';
 
 const AboutRoom = () => {
-    const { LobbyId } = useParams();
+    const { lobbyId } = useParams();
     const dispatch = useAppDispatch();
-    const UserId = decryptData(Cookies.get('userId'));
+    const userId = decryptData(Cookies.get('userId'));
     const User = useAppSelector((state) => state.user);
-    const [ActiveUser, setActiveUser] = useState<UserType>(User);
+    const [activeUser, setActiveUser] = useState<UserType>(User);
     const navigate = useNavigate();
 
     // отобразить описание комнаты, участников, приз, и с права форму с полями имя почта и фото
@@ -26,16 +26,16 @@ const AboutRoom = () => {
     // если что то не поймешь то пиши мне
 
     useEffect(() => {
-        function sendWithLogin() {
-            const NewUserId = sendInviteToLobby(LobbyId, ActiveUser); // здесь поменять потом на LobbyId который будет если команда найдена
-            Cookies.set('selectLobby', encryptData(LobbyId));
-            Cookies.set('userId', encryptData(NewUserId));
+        async function sendWithLogin() {
+            const newUserId = await sendInviteToLobby(lobbyId, activeUser); // здесь поменять потом на LobbyId который будет если команда найдена
+            Cookies.set('selectLobby', encryptData(lobbyId));
+            Cookies.set('userId', encryptData(newUserId));
             dispatch(
                 setUser({
                     isLogin: true,
-                    UserName: ActiveUser.UserName,
-                    UserEmail: ActiveUser.UserEmail,
-                    UserPhoto: ActiveUser.UserPhoto,
+                    UserName: activeUser.UserName,
+                    UserEmail: activeUser.UserEmail,
+                    UserPhoto: activeUser.UserPhoto,
                 }),
             );
         }
@@ -45,14 +45,14 @@ const AboutRoom = () => {
                 {
                     label: 'Присоединиться',
                     onClick: () => {
-                        if (LobbyId) {
+                        if (lobbyId) {
                             if (User.isLogin) {
                                 // здесь еще нужна проверка на админа, если этот пользователь админ этой комнаты то редирект на invitation-page
-                                sendInviteToLobby(LobbyId, User, UserId); // здесь поменять потом на id который будет если команда найдена
-                                Cookies.set('selectLobby', encryptData(LobbyId));
+                                sendInviteToLobby(lobbyId, User, userId); // здесь поменять потом на id который будет если команда найдена
+                                Cookies.set('selectLobby', encryptData(lobbyId));
                                 navigate(AppRoutesPath.WAITING_ROOM);
                             } else {
-                                if (checkForEmptyValues(ActiveUser)) {
+                                if (checkForEmptyValues(activeUser)) {
                                     sendWithLogin();
                                     navigate(AppRoutesPath.WAITING_ROOM);
                                 }
@@ -62,11 +62,11 @@ const AboutRoom = () => {
                 },
             ]),
         );
-    }, [ActiveUser]);
+    }, [activeUser]);
 
     return (
         <Paragraph>
-            About Room {LobbyId}
+            About Room {lobbyId}
             {!User.isLogin && (
                 <Space>
                     <input
